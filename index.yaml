@@ -1,0 +1,49 @@
+apiVersion: v1
+entries:
+  dolphin:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Initial release of the Dolphin Helm chart
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Helm Repository
+          url: https://henriqzimer.github.io/dolphin-helm-chart/
+        - name: Chart Source
+          url: https://github.com/HenriqZimer/dolphin-helm-chart
+        - name: Maintainer Website
+          url: https://henriqzimer.com.br
+        - name: GitHub Profile
+          url: https://github.com/HenriqZimer
+        - name: linuxserver.io Dolphin Image
+          url: https://docs.linuxserver.io/images/docker-dolphin/
+        - name: Documentation
+          url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
+    apiVersion: v2
+    appVersion: latest
+    created: "2026-08-12T13:12:16.874021863Z"
+    description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
+      KasmVNC webtop image
+    digest: 858debc7079ea444924dd75164801d1c31c5db857b1fff8a9a8e9818d7a2c42a
+    home: https://docs.linuxserver.io/images/docker-dolphin/
+    keywords:
+    - dolphin
+    - emulator
+    - gamecube
+    - wii
+    - retrogaming
+    - kasmvnc
+    - linuxserver
+    maintainers:
+    - email: henrique.zimermann@outlook.com
+      name: HenriqZimer
+      url: https://henriqzimer.com.br
+    name: dolphin
+    sources:
+    - https://github.com/linuxserver/docker-dolphin
+    - https://github.com/HenriqZimer/dolphin-helm-chart
+    type: application
+    urls:
+    - https://github.com/HenriqZimer/dolphin-helm-chart/releases/download/dolphin-1.0.0/dolphin-1.0.0.tgz
+    version: 1.0.0
+generated: "2026-08-12T13:12:16.874027852Z"
