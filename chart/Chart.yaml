@@ -2,7 +2,7 @@ apiVersion: v2
 name: dolphin
 description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator KasmVNC webtop image
 type: application
-version: 1.0.0
+version: 1.1.0
 appVersion: "latest"
 keywords:
   - dolphin
@@ -37,4 +37,9 @@ annotations:
       url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
   artifacthub.io/changes: |
     - kind: added
-      description: Initial release of the Dolphin Helm chart
+      description: Add streaming.enabled/streaming.brokerPort to expose the RomM emulator-streaming broker sidecar port (added via a DOCKER_MODS Docker Mod), for use with docs.romm.app/latest/using/emulator-streaming
+  artifacthub.io/changesHistory: |
+    - version: 1.0.0
+      changes:
+        - kind: added
+          description: Initial release of the Dolphin Helm chart
