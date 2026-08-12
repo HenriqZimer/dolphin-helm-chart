@@ -1,0 +1,40 @@
+apiVersion: v2
+name: dolphin
+description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator KasmVNC webtop image
+type: application
+version: 0.1.0
+appVersion: "latest"
+keywords:
+  - dolphin
+  - emulator
+  - gamecube
+  - wii
+  - retrogaming
+  - kasmvnc
+  - linuxserver
+home: https://docs.linuxserver.io/images/docker-dolphin/
+sources:
+  - https://github.com/linuxserver/docker-dolphin
+  - https://github.com/HenriqZimer/dolphin-helm-chart
+maintainers:
+  - name: HenriqZimer
+    email: henrique.zimermann@outlook.com
+    url: https://henriqzimer.com.br
+annotations:
+  artifacthub.io/license: MIT
+  artifacthub.io/links: |
+    - name: Helm Repository
+      url: https://henriqzimer.github.io/dolphin-helm-chart/
+    - name: Chart Source
+      url: https://github.com/HenriqZimer/dolphin-helm-chart
+    - name: Maintainer Website
+      url: https://henriqzimer.com.br
+    - name: GitHub Profile
+      url: https://github.com/HenriqZimer
+    - name: linuxserver.io Dolphin Image
+      url: https://docs.linuxserver.io/images/docker-dolphin/
+    - name: Documentation
+      url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial release of the Dolphin Helm chart
