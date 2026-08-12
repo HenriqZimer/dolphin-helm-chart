@@ -4,6 +4,56 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: Add streaming.enabled/streaming.brokerPort to expose the RomM emulator-streaming broker sidecar port (added via a DOCKER_MODS Docker Mod), for use with docs.romm.app/latest/using/emulator-streaming
+      artifacthub.io/changesHistory: |
+        - version: 1.0.0
+          changes:
+            - kind: added
+              description: Initial release of the Dolphin Helm chart
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Helm Repository
+          url: https://henriqzimer.github.io/dolphin-helm-chart/
+        - name: Chart Source
+          url: https://github.com/HenriqZimer/dolphin-helm-chart
+        - name: Maintainer Website
+          url: https://henriqzimer.com.br
+        - name: GitHub Profile
+          url: https://github.com/HenriqZimer
+        - name: linuxserver.io Dolphin Image
+          url: https://docs.linuxserver.io/images/docker-dolphin/
+        - name: Documentation
+          url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
+    apiVersion: v2
+    appVersion: latest
+    created: "2026-08-12T14:07:32.876447119Z"
+    description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
+      KasmVNC webtop image
+    digest: f2414e51b25a4301dce0dc73dd83268f0cb162138f7b07c1d5b67935b3f74741
+    home: https://docs.linuxserver.io/images/docker-dolphin/
+    keywords:
+    - dolphin
+    - emulator
+    - gamecube
+    - wii
+    - retrogaming
+    - kasmvnc
+    - linuxserver
+    maintainers:
+    - email: henrique.zimermann@outlook.com
+      name: HenriqZimer
+      url: https://henriqzimer.com.br
+    name: dolphin
+    sources:
+    - https://github.com/linuxserver/docker-dolphin
+    - https://github.com/HenriqZimer/dolphin-helm-chart
+    type: application
+    urls:
+    - https://github.com/HenriqZimer/dolphin-helm-chart/releases/download/dolphin-1.1.0/dolphin-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: Initial release of the Dolphin Helm chart
       artifacthub.io/license: MIT
       artifacthub.io/links: |
@@ -46,4 +96,4 @@ entries:
     urls:
     - https://github.com/HenriqZimer/dolphin-helm-chart/releases/download/dolphin-1.0.0/dolphin-1.0.0.tgz
     version: 1.0.0
-generated: "2026-08-12T13:12:16.874027852Z"
+generated: "2026-08-12T14:07:32.876459392Z"
