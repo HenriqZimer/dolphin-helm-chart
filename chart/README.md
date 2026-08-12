@@ -1,6 +1,6 @@
 # Dolphin Helm Chart
 
-[![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square)](https://github.com/HenriqZimer/dolphin-helm-chart)
+[![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square)](https://github.com/HenriqZimer/dolphin-helm-chart)
 [![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)](https://docs.linuxserver.io/images/docker-dolphin/)
 
 A Helm chart for [Dolphin](https://docs.linuxserver.io/images/docker-dolphin/) - the linuxserver.io
@@ -45,7 +45,7 @@ git clone https://github.com/HenriqZimer/dolphin-helm-chart.git
 cd dolphin-helm-chart
 
 helm package chart/
-helm install dolphin ./dolphin-0.1.0.tgz
+helm install dolphin ./dolphin-1.0.0.tgz
 ```
 
 ## Configuration
