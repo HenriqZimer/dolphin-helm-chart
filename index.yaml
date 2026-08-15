@@ -3,6 +3,68 @@ entries:
   dolphin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: gpu.vendor "nvidia" mode (alongside the existing "intel-amd" VA-API mode), requesting nvidia.com/gpu via the NVIDIA Kubernetes device plugin and setting NVIDIA_VISIBLE_DEVICES/NVIDIA_DRIVER_CAPABILITIES. Documented the nvidia-drm.modeset=1 kernel parameter (and, on headless nodes, a dummy HDMI/DP plug) needed on the node for the compositor to render anything instead of a solid black desktop
+        - kind: added
+          description: seccompUnconfined to work around a JIT recompiler crashing with SIGBUS under the default seccomp profile on some kernel/libseccomp combinations
+        - kind: changed
+          description: Bumped the default shmSize from 1Gi to 2Gi, matching the fix confirmed on this chart's sibling pcsx2-helm-chart for a JIT recompiler crashing with SIGBUS under Docker/Kubernetes' small default /dev/shm
+      artifacthub.io/changesHistory: |
+        - version: 1.1.1
+          changes:
+            - kind: changed
+              description: Clarify the streaming README section - host must be reachable directly by the end user's browser (not cluster-internal DNS), and the container's self-signed cert has no SAN, which some browsers refuse outright
+        - version: 1.1.0
+          changes:
+            - kind: added
+              description: Add streaming.enabled/streaming.brokerPort to expose the RomM emulator-streaming broker sidecar port (added via a DOCKER_MODS Docker Mod), for use with docs.romm.app/latest/using/emulator-streaming
+        - version: 1.0.0
+          changes:
+            - kind: added
+              description: Initial release of the Dolphin Helm chart
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Helm Repository
+          url: https://henriqzimer.github.io/dolphin-helm-chart/
+        - name: Chart Source
+          url: https://github.com/HenriqZimer/dolphin-helm-chart
+        - name: Maintainer Website
+          url: https://henriqzimer.com.br
+        - name: GitHub Profile
+          url: https://github.com/HenriqZimer
+        - name: linuxserver.io Dolphin Image
+          url: https://docs.linuxserver.io/images/docker-dolphin/
+        - name: Documentation
+          url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
+    apiVersion: v2
+    appVersion: latest
+    created: "2026-08-15T23:24:15.467002513Z"
+    description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
+      KasmVNC webtop image
+    digest: 638f811cd0544dfef7c9b13e9b0e037cc9eb25e8675aaf3fd4065b842c93fdc2
+    home: https://docs.linuxserver.io/images/docker-dolphin/
+    keywords:
+    - dolphin
+    - emulator
+    - gamecube
+    - wii
+    - retrogaming
+    - kasmvnc
+    - linuxserver
+    maintainers:
+    - email: henrique.zimermann@outlook.com
+      name: HenriqZimer
+      url: https://henriqzimer.com.br
+    name: dolphin
+    sources:
+    - https://github.com/linuxserver/docker-dolphin
+    - https://github.com/HenriqZimer/dolphin-helm-chart
+    type: application
+    urls:
+    - https://github.com/HenriqZimer/dolphin-helm-chart/releases/download/v1.2.0/dolphin-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Clarify the streaming README section - host must be reachable directly by the end user's browser (not cluster-internal DNS), and the container's self-signed cert has no SAN, which some browsers refuse outright
       artifacthub.io/changesHistory: |
@@ -150,4 +212,4 @@ entries:
     urls:
     - https://github.com/HenriqZimer/dolphin-helm-chart/releases/download/dolphin-1.0.0/dolphin-1.0.0.tgz
     version: 1.0.0
-generated: "2026-08-12T14:59:40.077713435Z"
+generated: "2026-08-15T23:24:15.467018173Z"
