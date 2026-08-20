@@ -4,7 +4,7 @@
   <img src="https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png" alt="Dolphin logo" width="140" />
 </p>
 
-[![Version: 1.2.4](https://img.shields.io/badge/Version-1.2.4-informational?style=flat-square)](https://github.com/HenriqZimer/dolphin-helm-chart)
+[![Version: 1.2.5](https://img.shields.io/badge/Version-1.2.5-informational?style=flat-square)](https://github.com/HenriqZimer/dolphin-helm-chart)
 [![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)](https://docs.linuxserver.io/images/docker-dolphin/)
 
 A Helm chart for [Dolphin](https://docs.linuxserver.io/images/docker-dolphin/) - the linuxserver.io
@@ -14,11 +14,11 @@ GameCube/Wii emulator, served as a full desktop over the browser via KasmVNC.
 
 ```bash
 # Add the Helm repository
-helm repo add dolphin https://henriqzimer.github.io/dolphin-helm-chart
+helm repo add dolphin-helm-chart https://henriqzimer.github.io/dolphin-helm-chart/
 helm repo update
 
 # Install Dolphin
-helm install dolphin dolphin/dolphin
+helm install my-dolphin dolphin-helm-chart/dolphin --version 1.2.5
 ```
 
 ## Prerequisites
@@ -37,10 +37,10 @@ helm install dolphin dolphin/dolphin
 ### From Helm Repository
 
 ```bash
-helm repo add dolphin https://henriqzimer.github.io/dolphin-helm-chart
+helm repo add dolphin-helm-chart https://henriqzimer.github.io/dolphin-helm-chart/
 helm repo update
 
-helm install dolphin dolphin/dolphin
+helm install my-dolphin dolphin-helm-chart/dolphin --version 1.2.5
 ```
 
 ### From Source
@@ -50,7 +50,7 @@ git clone https://github.com/HenriqZimer/dolphin-helm-chart.git
 cd dolphin-helm-chart
 
 helm package chart/
-helm install dolphin ./dolphin-1.2.4.tgz
+helm install my-dolphin ./dolphin-1.2.5.tgz
 ```
 
 ## Configuration

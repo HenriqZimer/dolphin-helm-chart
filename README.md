@@ -28,14 +28,14 @@ your network:
 ### Add Helm Repository
 
 ```bash
-helm repo add dolphin https://henriqzimer.github.io/dolphin-helm-chart/
+helm repo add dolphin-helm-chart https://henriqzimer.github.io/dolphin-helm-chart/
 helm repo update
 ```
 
 ### Install Chart
 
 ```bash
-helm install dolphin dolphin/dolphin
+helm install my-dolphin dolphin-helm-chart/dolphin --version 1.2.5
 ```
 
 For detailed installation instructions and configuration options, see the [chart README](chart/README.md).
