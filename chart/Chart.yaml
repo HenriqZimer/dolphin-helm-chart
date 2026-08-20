@@ -2,7 +2,7 @@ apiVersion: v2
 name: dolphin
 description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator KasmVNC webtop image
 type: application
-version: 1.3.0
+version: 1.3.1
 appVersion: "latest"
 icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png
 keywords:
@@ -40,9 +40,13 @@ annotations:
     - name: Documentation
       url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
   artifacthub.io/changes: |
-    - kind: added
-      description: sunshine.* (POC) - Sunshine/Moonlight low-latency game streaming as an alternative to the default Selkies/KasmVNC streaming, requiring a Docker Mod and hostNetwork/privileged - see CHANGELOG for the full rationale
+    - kind: fixed
+      description: replicaCount schema now allows 0 (pause the emulator) in addition to 1, previously restricted to exactly 1
   artifacthub.io/changesHistory: |
+    - version: 1.3.0
+      changes:
+        - kind: added
+          description: sunshine.* (POC) - Sunshine/Moonlight low-latency game streaming as an alternative to the default Selkies/KasmVNC streaming, requiring a Docker Mod and hostNetwork/privileged - see CHANGELOG for the full rationale
     - version: 1.2.5
       changes:
         - kind: fixed

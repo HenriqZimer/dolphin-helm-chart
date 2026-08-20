@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-08-20
+
+### Fixed
+- `replicaCount` schema now allows `0` (pause the emulator, e.g. to free node resources temporarily) in addition to `1` - previously restricted to exactly `1`, so `0` was rejected outright.
+
 ## [1.3.0] - 2026-08-20
 
 ### Added

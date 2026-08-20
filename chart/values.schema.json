@@ -5,10 +5,10 @@
   "properties": {
     "replicaCount": {
       "type": "integer",
-      "minimum": 1,
+      "minimum": 0,
       "maximum": 1,
       "default": 1,
-      "description": "Must stay at 1 - KasmVNC/webtop images keep session state in /config, no clustering/session affinity."
+      "description": "0 (paused) or 1 - KasmVNC/webtop images keep session state in /config, no clustering/session affinity, so more than 1 is never valid."
     },
     "revisionHistoryLimit": {
       "type": "integer",
