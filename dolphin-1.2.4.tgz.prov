@@ -1,0 +1,103 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: README now shows the emulator's logo at the top (linuxserver.io's own image, same one used for the chart icon)
+  artifacthub.io/changesHistory: |
+    - version: 1.2.3
+      changes:
+        - kind: added
+          description: Chart releases are now signed (helm package --sign) - see artifacthub.io/signKey for the public key location and fingerprint, powers the "Signed" badge on ArtifactHub
+    - version: 1.2.2
+      changes:
+        - kind: added
+          description: values.schema.json - validates values.yaml against a JSON Schema, and is what powers the "Values schema" feature/badge on ArtifactHub (previously absent)
+    - version: 1.2.1
+      changes:
+        - kind: added
+          description: icon, previously missing entirely - pointed at linuxserver.io's own logo image for this app, which is why no image was ever showing on ArtifactHub
+    - version: 1.2.0
+      changes:
+        - kind: added
+          description: gpu.vendor "nvidia" mode (alongside the existing "intel-amd" VA-API mode), requesting nvidia.com/gpu via the NVIDIA Kubernetes device plugin and setting NVIDIA_VISIBLE_DEVICES/NVIDIA_DRIVER_CAPABILITIES. Documented the nvidia-drm.modeset=1 kernel parameter (and, on headless nodes, a dummy HDMI/DP plug) needed on the node for the compositor to render anything instead of a solid black desktop
+        - kind: added
+          description: seccompUnconfined to work around a JIT recompiler crashing with SIGBUS under the default seccomp profile on some kernel/libseccomp combinations
+        - kind: changed
+          description: Bumped the default shmSize from 1Gi to 2Gi, matching the fix confirmed on this chart's sibling pcsx2-helm-chart for a JIT recompiler crashing with SIGBUS under Docker/Kubernetes' small default /dev/shm
+    - version: 1.1.1
+      changes:
+        - kind: changed
+          description: Clarify the streaming README section - host must be reachable directly by the end user's browser (not cluster-internal DNS), and the container's self-signed cert has no SAN, which some browsers refuse outright
+    - version: 1.1.0
+      changes:
+        - kind: added
+          description: Add streaming.enabled/streaming.brokerPort to expose the RomM emulator-streaming broker sidecar port (added via a DOCKER_MODS Docker Mod), for use with docs.romm.app/latest/using/emulator-streaming
+    - version: 1.0.0
+      changes:
+        - kind: added
+          description: Initial release of the Dolphin Helm chart
+  artifacthub.io/license: MIT
+  artifacthub.io/links: |
+    - name: Helm Repository
+      url: https://henriqzimer.github.io/dolphin-helm-chart/
+    - name: Chart Source
+      url: https://github.com/HenriqZimer/dolphin-helm-chart
+    - name: Maintainer Website
+      url: https://henriqzimer.com.br
+    - name: GitHub Profile
+      url: https://github.com/HenriqZimer
+    - name: linuxserver.io Dolphin Image
+      url: https://docs.linuxserver.io/images/docker-dolphin/
+    - name: Documentation
+      url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
+  artifacthub.io/signKey: |
+    fingerprint: C2E2E16693F2715BA0B23913BF94E5067859562F
+    url: https://henriqzimer.github.io/dolphin-helm-chart/HenriqZimer-helm-charts-public.asc
+apiVersion: v2
+appVersion: latest
+description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator KasmVNC
+  webtop image
+home: https://docs.linuxserver.io/images/docker-dolphin/
+icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png
+keywords:
+- - dolphin
+- - emulator
+- - gamecube
+- - wii
+- - retrogaming
+- - kasmvnc
+- - linuxserver
+maintainers:
+- - email: henrique.zimermann@outlook.com
+  name: HenriqZimer
+  url: https://henriqzimer.com.br
+name: dolphin
+sources:
+- - https://github.com/linuxserver/docker-dolphin
+- - https://github.com/HenriqZimer/dolphin-helm-chart
+type: application
+version: 1.2.4
+
+...
+files:
+  dolphin-1.2.4.tgz: sha256:fb664f97236a045109c3382781bdd93b26580c08db71488b56420575c0c9efe0
+
+-----BEGIN PGP SIGNATURE-----
+
+wsG5BAEBCgBtBYJqhn8ECRC/lOUGeFlWL0UUAAAAAAAcACBzYWx0QG5vdGF0aW9u
+cy5vcGVucGdwanMub3Jnxsy6mZDW0p+QeBXK4htZ0CaRpc2wYwpwFRIy6naJgRQW
+IQTC4uFmk/JxW6CyORO/lOUGeFlWLwAATacQAL+SuoPZsYucBKfqP8de4gZytE8V
++LhOrlvG5oEwN+pc3kzODahTdIrU37WemOpUZSCVjbXqF0bwBunktoKer2GmCr7k
+C3XhYVKch/s/lj1OgYlNpN7+CYQgyocBNUghIqcOa+O9yK/YtW8swP2U3GtFvdtN
+SFeMpRq74+qQ47081qfsDZ7deibz9OzU7Tn+tKZcrjXv++nR1gxanBbDgEDC7Tkg
+uaWlIklkw3EGhBEiun4qyhw8SHZrFal/NDZwRQcwLyiO9y6SemLpnLhCo2Nkf/lk
+beuGTno04yL7EU+KYYPy9SqKcngZ71p+5TZ+O79B4iZ8RNxMDLoszj61YXQe8rX9
+QAfFt36LzCEiZdnkHMsYIW4CeTNn3q4rRXohlB/JtA4dLL2OfawGiYmns0RGT+72
+QCu8qYWgqtqOwXcdSJGVfO59FkP9NU4eS7oSqOJFtE+rVoe+Fl+/AwAHwcR9aG2R
+mzwbPZfYBddSKEqS3j54i4+78vBpNk1HAHD5Jw1BwMI5+9GD9QXJ9xxp3NxsW+SR
+he71uru8Ru7nUGyf9h7C9xrKlpKrKwOouyvShn/wGhEZNdHM6Wih9sRWkqesiowF
+Ld7Ro27yETCNqy6Ehp/l1ZtGNlVY5zKmTVJbj0qqNi10TzHr9MDNb8zwf6U9qWdi
+lmgqsHl2NpbqL8xY
+-----END PGP SIGNATURE-----
