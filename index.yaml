@@ -3,6 +3,96 @@ entries:
   dolphin:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: sunshine.* (POC) - Sunshine/Moonlight low-latency game streaming as an alternative to the default Selkies/KasmVNC streaming, requiring a Docker Mod and hostNetwork/privileged - see CHANGELOG for the full rationale
+      artifacthub.io/changesHistory: |
+        - version: 1.2.5
+          changes:
+            - kind: fixed
+              description: README install commands now use a unique repo alias (<name>-helm-chart) instead of the bare chart name, and pin --version explicitly, matching what actually works
+        - version: 1.2.4
+          changes:
+            - kind: changed
+              description: README now shows the emulator's logo at the top (linuxserver.io's own image, same one used for the chart icon)
+        - version: 1.2.3
+          changes:
+            - kind: added
+              description: Chart releases are now signed (helm package --sign) - see artifacthub.io/signKey for the public key location and fingerprint, powers the "Signed" badge on ArtifactHub
+        - version: 1.2.2
+          changes:
+            - kind: added
+              description: values.schema.json - validates values.yaml against a JSON Schema, and is what powers the "Values schema" feature/badge on ArtifactHub (previously absent)
+        - version: 1.2.1
+          changes:
+            - kind: added
+              description: icon, previously missing entirely - pointed at linuxserver.io's own logo image for this app, which is why no image was ever showing on ArtifactHub
+        - version: 1.2.0
+          changes:
+            - kind: added
+              description: gpu.vendor "nvidia" mode (alongside the existing "intel-amd" VA-API mode), requesting nvidia.com/gpu via the NVIDIA Kubernetes device plugin and setting NVIDIA_VISIBLE_DEVICES/NVIDIA_DRIVER_CAPABILITIES. Documented the nvidia-drm.modeset=1 kernel parameter (and, on headless nodes, a dummy HDMI/DP plug) needed on the node for the compositor to render anything instead of a solid black desktop
+            - kind: added
+              description: seccompUnconfined to work around a JIT recompiler crashing with SIGBUS under the default seccomp profile on some kernel/libseccomp combinations
+            - kind: changed
+              description: Bumped the default shmSize from 1Gi to 2Gi, matching the fix confirmed on this chart's sibling pcsx2-helm-chart for a JIT recompiler crashing with SIGBUS under Docker/Kubernetes' small default /dev/shm
+        - version: 1.1.1
+          changes:
+            - kind: changed
+              description: Clarify the streaming README section - host must be reachable directly by the end user's browser (not cluster-internal DNS), and the container's self-signed cert has no SAN, which some browsers refuse outright
+        - version: 1.1.0
+          changes:
+            - kind: added
+              description: Add streaming.enabled/streaming.brokerPort to expose the RomM emulator-streaming broker sidecar port (added via a DOCKER_MODS Docker Mod), for use with docs.romm.app/latest/using/emulator-streaming
+        - version: 1.0.0
+          changes:
+            - kind: added
+              description: Initial release of the Dolphin Helm chart
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Helm Repository
+          url: https://henriqzimer.github.io/dolphin-helm-chart/
+        - name: Chart Source
+          url: https://github.com/HenriqZimer/dolphin-helm-chart
+        - name: Maintainer Website
+          url: https://henriqzimer.com.br
+        - name: GitHub Profile
+          url: https://github.com/HenriqZimer
+        - name: linuxserver.io Dolphin Image
+          url: https://docs.linuxserver.io/images/docker-dolphin/
+        - name: Documentation
+          url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
+      artifacthub.io/signKey: |
+        fingerprint: C2E2E16693F2715BA0B23913BF94E5067859562F
+        url: https://henriqzimer.github.io/dolphin-helm-chart/HenriqZimer-helm-charts-public.asc
+    apiVersion: v2
+    appVersion: latest
+    created: "2026-08-20T20:31:50.068257091Z"
+    description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
+      KasmVNC webtop image
+    digest: 896146783da94d3881a5534890fc97e2b26622a23bedc7ad65a8d35d21d7fd1c
+    home: https://docs.linuxserver.io/images/docker-dolphin/
+    icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png
+    keywords:
+    - dolphin
+    - emulator
+    - gamecube
+    - wii
+    - retrogaming
+    - kasmvnc
+    - linuxserver
+    maintainers:
+    - email: henrique.zimermann@outlook.com
+      name: HenriqZimer
+      url: https://henriqzimer.com.br
+    name: dolphin
+    sources:
+    - https://github.com/linuxserver/docker-dolphin
+    - https://github.com/HenriqZimer/dolphin-helm-chart
+    type: application
+    urls:
+    - https://github.com/HenriqZimer/dolphin-helm-chart/releases/download/v1.3.0/dolphin-1.3.0.tgz
+    version: 1.3.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: README install commands now use a unique repo alias (<name>-helm-chart) instead of the bare chart name, and pin --version explicitly, matching what actually works
       artifacthub.io/changesHistory: |
@@ -596,4 +686,4 @@ entries:
     urls:
     - https://github.com/HenriqZimer/dolphin-helm-chart/releases/download/dolphin-1.0.0/dolphin-1.0.0.tgz
     version: 1.0.0
-generated: "2026-08-20T04:31:47.773762148Z"
+generated: "2026-08-20T20:31:50.068306264Z"
