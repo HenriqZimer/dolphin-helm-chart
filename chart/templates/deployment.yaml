@@ -145,12 +145,13 @@ spec:
           readinessProbe:
             tcpSocket:
               port: http
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             periodSeconds: 10
+            failureThreshold: 6
           livenessProbe:
             tcpSocket:
               port: http
-            initialDelaySeconds: 30
+            initialDelaySeconds: 90
             periodSeconds: 20
       {{- if and .Values.gpu.enabled (eq .Values.gpu.vendor "intel-amd") }}
       {{- with .Values.gpu.supplementalGroups }}
