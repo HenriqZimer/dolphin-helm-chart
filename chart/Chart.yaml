@@ -2,7 +2,7 @@ apiVersion: v2
 name: dolphin
 description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator KasmVNC webtop image
 type: application
-version: 1.4.1
+version: 1.5.0
 appVersion: "latest"
 icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png
 keywords:
@@ -40,9 +40,13 @@ annotations:
     - name: Documentation
       url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
   artifacthub.io/changes: |
-    - kind: fixed
-      description: "sunshine.* now also mounts /dev/uhid - without it, Sunshine falls back to emulating gamepads as a generic Xbox One controller when the client reports a PlayStation-type pad (DualShock/DualSense), and that fallback does not correctly forward face buttons/triggers (confirmed: analog stick axes work, buttons don't) - the real virtual DualShock/DualSense device needs kernel uhid access to be created"
+    - kind: changed
+      description: "sunshine.hostNetwork now defaults to false, replaced by a new sunshine.service (LoadBalancer via MetalLB) as the default way to expose Moonlight's TCP/UDP ports. Root-caused in production (2026-08-23): with multiple sunshine.hostNetwork pods sharing one node, the base image's KasmVNC nginx (hardcoded on 3000/3001) collided across every pod but the first, permanently breaking browser access for all the others - LoadBalancer keeps each pod's own network namespace, so the collision can't happen regardless of how many sunshine-enabled emulators share a node. hostNetwork is kept as an opt-in fallback (sunshine.hostNetwork: true). sunshine.service supports MetalLB's allow-shared-ip (sunshine.service.sharedIPKey) so multiple emulator releases can share one external IP - set the same loadBalancerIP + sharedIPKey on each, with non-overlapping sunshine.port values."
   artifacthub.io/changesHistory: |
+    - version: 1.4.1
+      changes: |
+        - kind: fixed
+          description: "sunshine.* now also mounts /dev/uhid - without it, Sunshine falls back to emulating gamepads as a generic Xbox One controller when the client reports a PlayStation-type pad (DualShock/DualSense), and that fallback does not correctly forward face buttons/triggers (confirmed: analog stick axes work, buttons don't) - the real virtual DualShock/DualSense device needs kernel uhid access to be created"
     - version: 1.4.0
       changes:
         - kind: changed
