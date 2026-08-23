@@ -93,10 +93,10 @@ entries:
         url: https://henriqzimer.github.io/dolphin-helm-chart/HenriqZimer-helm-charts-public.asc
     apiVersion: v2
     appVersion: latest
-    created: "2026-08-23T22:49:35.47583779Z"
+    created: "2026-08-23T22:50:13.153004962Z"
     description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
       KasmVNC webtop image
-    digest: 153224bd3569550f2752df1670838eb568a1ee6266369922d36ce86ab5810fc7
+    digest: ece9d50c6dcec03f9f16b0b940ec405949c02c2261459cf4b1f3bea0d452984e
     home: https://docs.linuxserver.io/images/docker-dolphin/
     icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png
     keywords:
@@ -117,7 +117,7 @@ entries:
     - https://github.com/HenriqZimer/dolphin-helm-chart
     type: application
     urls:
-    - https://github.com/HenriqZimer/dolphin-helm-chart/releases/download/v1.5.3/dolphin-1.5.3.tgz
+    - https://henriqzimer.github.io/dolphin-helm-chart/dolphin-1.5.3.tgz
     version: 1.5.3
   - annotations:
       artifacthub.io/changes: |
@@ -207,7 +207,7 @@ entries:
         url: https://henriqzimer.github.io/dolphin-helm-chart/HenriqZimer-helm-charts-public.asc
     apiVersion: v2
     appVersion: latest
-    created: "2026-08-23T21:56:09.211492106Z"
+    created: "2026-08-23T22:50:13.15099795Z"
     description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
       KasmVNC webtop image
     digest: 655291f5f175f73aa349dd5429600bc6e0973145630bf45b565703342c1b9a4b
@@ -893,7 +893,7 @@ entries:
         url: https://henriqzimer.github.io/dolphin-helm-chart/HenriqZimer-helm-charts-public.asc
     apiVersion: v2
     appVersion: latest
-    created: "2026-08-23T21:56:09.209869127Z"
+    created: "2026-08-23T22:50:13.148024944Z"
     description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
       KasmVNC webtop image
     digest: 0d2cc1dd4ae7f26987427773dc96f7f77b884fffb5d6da855de88dc9c3c3f3e7
@@ -975,7 +975,7 @@ entries:
         url: https://henriqzimer.github.io/dolphin-helm-chart/HenriqZimer-helm-charts-public.asc
     apiVersion: v2
     appVersion: latest
-    created: "2026-08-23T21:56:09.208508213Z"
+    created: "2026-08-23T22:50:13.146428243Z"
     description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
       KasmVNC webtop image
     digest: fb664f97236a045109c3382781bdd93b26580c08db71488b56420575c0c9efe0
@@ -1053,7 +1053,7 @@ entries:
         url: https://henriqzimer.github.io/dolphin-helm-chart/HenriqZimer-helm-charts-public.asc
     apiVersion: v2
     appVersion: latest
-    created: "2026-08-23T21:56:09.207160506Z"
+    created: "2026-08-23T22:50:13.144622271Z"
     description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
       KasmVNC webtop image
     digest: 0a5d29bc26a21561f4adfe2c0c5e632765b7b2437b802acb5055ffdc6e2294d9
@@ -1124,7 +1124,7 @@ entries:
           url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
     apiVersion: v2
     appVersion: latest
-    created: "2026-08-23T21:56:09.20571007Z"
+    created: "2026-08-23T22:50:13.14311728Z"
     description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
       KasmVNC webtop image
     digest: b2e25f911efa18d140824a0955f67d0e1ed3b4baa5a07c724a88635d98dab4af
@@ -1191,7 +1191,7 @@ entries:
           url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
     apiVersion: v2
     appVersion: latest
-    created: "2026-08-23T21:56:09.203651765Z"
+    created: "2026-08-23T22:50:13.141869407Z"
     description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator
       KasmVNC webtop image
     digest: 3927862975c222c7ef265628ccc9df9e7c9c2856170bf3d0108c61809006dc68
@@ -1428,4 +1428,4 @@ entries:
     urls:
     - https://github.com/HenriqZimer/dolphin-helm-chart/releases/download/dolphin-1.0.0/dolphin-1.0.0.tgz
     version: 1.0.0
-generated: "2026-08-23T22:49:35.475975818Z"
+generated: "2026-08-23T22:50:13.140421821Z"

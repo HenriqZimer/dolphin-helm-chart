@@ -1,0 +1,139 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+annotations:
+  artifacthub.io/changes: |
+    - kind: changed
+      description: "livenessProbe.initialDelaySeconds bumped 90s->120s and failureThreshold explicitly set to 6 (was the implicit k8s default of 3) - confirmed in production that under heavy I/O contention from a shared NFS-backed PVC (several emulator pods cold-booting simultaneously after a node reboot), the old 150s total liveness tolerance wasn't enough for DOCKER_MODS's ephemeral apt install + KasmVNC desktop startup to finish; kubelet kept killing the container mid-boot, and each kill wiped the ephemeral DOCKER_MODS progress, creating a self-sustaining restart loop that never converged even as node load dropped. New tolerance: 120 + 6*20 = 240s."
+  artifacthub.io/changesHistory: |
+    - version: 1.5.2
+      changes: |
+        - kind: changed
+          description: Much more tolerant readinessProbe/livenessProbe initialDelaySeconds (10s->30s / 30s->90s) and a more realistic resources.requests.cpu (500m->1) - under real CPU contention on a shared GPU node, the old tight probe timing was killing containers mid-boot before the KasmVNC desktop finished starting, causing a self-sustaining restart storm
+    - version: 1.5.1
+      changes:
+        - kind: fixed
+          description: "sunshine.service.externalTrafficPolicy default changed from Local to Cluster - MetalLB's IP-sharing feature (allow-shared-ip) requires every Service sharing an external IP to have an IDENTICAL pod selector when using Local traffic policy, which is fundamentally incompatible with sharing one IP across multiple different emulator Deployments (confirmed in production, 2026-08-23: every non-first Service failed allocation with \"can't change sharing key\", regardless of annotation/port config). Cluster does not have that restriction. Tradeoff: an extra kube-proxy hop and loss of the real client source IP, both minor for this use case."
+    - version: 1.5.0
+      changes: |
+        - kind: changed
+          description: "sunshine.hostNetwork now defaults to false, replaced by a new sunshine.service (LoadBalancer via MetalLB) as the default way to expose Moonlight's TCP/UDP ports. Root-caused in production (2026-08-23): with multiple sunshine.hostNetwork pods sharing one node, the base image's KasmVNC nginx (hardcoded on 3000/3001) collided across every pod but the first, permanently breaking browser access for all the others - LoadBalancer keeps each pod's own network namespace, so the collision can't happen regardless of how many sunshine-enabled emulators share a node. hostNetwork is kept as an opt-in fallback (sunshine.hostNetwork: true). sunshine.service supports MetalLB's allow-shared-ip (sunshine.service.sharedIPKey) so multiple emulator releases can share one external IP - set the same loadBalancerIP + sharedIPKey on each, with non-overlapping sunshine.port values."
+    - version: 1.4.1
+      changes: |
+        - kind: fixed
+          description: "sunshine.* now also mounts /dev/uhid - without it, Sunshine falls back to emulating gamepads as a generic Xbox One controller when the client reports a PlayStation-type pad (DualShock/DualSense), and that fallback does not correctly forward face buttons/triggers (confirmed: analog stick axes work, buttons don't) - the real virtual DualShock/DualSense device needs kernel uhid access to be created"
+    - version: 1.4.0
+      changes:
+        - kind: changed
+          description: "BREAKING: sunshine.ports.* replaced by a single sunshine.port (Sunshine only accepts one configurable base port - every other port is a fixed offset from it, the old independent ports.* fields were silently ignored by Sunshine itself)"
+    - version: 1.3.1
+      changes:
+        - kind: fixed
+          description: replicaCount schema now allows 0 (pause the emulator) in addition to 1, previously restricted to exactly 1
+    - version: 1.3.0
+      changes:
+        - kind: added
+          description: sunshine.* (POC) - Sunshine/Moonlight low-latency game streaming as an alternative to the default Selkies/KasmVNC streaming, requiring a Docker Mod and hostNetwork/privileged - see CHANGELOG for the full rationale
+    - version: 1.2.5
+      changes:
+        - kind: fixed
+          description: README install commands now use a unique repo alias (<name>-helm-chart) instead of the bare chart name, and pin --version explicitly, matching what actually works
+    - version: 1.2.4
+      changes:
+        - kind: changed
+          description: README now shows the emulator's logo at the top (linuxserver.io's own image, same one used for the chart icon)
+    - version: 1.2.3
+      changes:
+        - kind: added
+          description: Chart releases are now signed (helm package --sign) - see artifacthub.io/signKey for the public key location and fingerprint, powers the "Signed" badge on ArtifactHub
+    - version: 1.2.2
+      changes:
+        - kind: added
+          description: values.schema.json - validates values.yaml against a JSON Schema, and is what powers the "Values schema" feature/badge on ArtifactHub (previously absent)
+    - version: 1.2.1
+      changes:
+        - kind: added
+          description: icon, previously missing entirely - pointed at linuxserver.io's own logo image for this app, which is why no image was ever showing on ArtifactHub
+    - version: 1.2.0
+      changes:
+        - kind: added
+          description: gpu.vendor "nvidia" mode (alongside the existing "intel-amd" VA-API mode), requesting nvidia.com/gpu via the NVIDIA Kubernetes device plugin and setting NVIDIA_VISIBLE_DEVICES/NVIDIA_DRIVER_CAPABILITIES. Documented the nvidia-drm.modeset=1 kernel parameter (and, on headless nodes, a dummy HDMI/DP plug) needed on the node for the compositor to render anything instead of a solid black desktop
+        - kind: added
+          description: seccompUnconfined to work around a JIT recompiler crashing with SIGBUS under the default seccomp profile on some kernel/libseccomp combinations
+        - kind: changed
+          description: Bumped the default shmSize from 1Gi to 2Gi, matching the fix confirmed on this chart's sibling pcsx2-helm-chart for a JIT recompiler crashing with SIGBUS under Docker/Kubernetes' small default /dev/shm
+    - version: 1.1.1
+      changes:
+        - kind: changed
+          description: Clarify the streaming README section - host must be reachable directly by the end user's browser (not cluster-internal DNS), and the container's self-signed cert has no SAN, which some browsers refuse outright
+    - version: 1.1.0
+      changes:
+        - kind: added
+          description: Add streaming.enabled/streaming.brokerPort to expose the RomM emulator-streaming broker sidecar port (added via a DOCKER_MODS Docker Mod), for use with docs.romm.app/latest/using/emulator-streaming
+    - version: 1.0.0
+      changes:
+        - kind: added
+          description: Initial release of the Dolphin Helm chart
+  artifacthub.io/license: MIT
+  artifacthub.io/links: |
+    - name: Helm Repository
+      url: https://henriqzimer.github.io/dolphin-helm-chart/
+    - name: Chart Source
+      url: https://github.com/HenriqZimer/dolphin-helm-chart
+    - name: Maintainer Website
+      url: https://henriqzimer.com.br
+    - name: GitHub Profile
+      url: https://github.com/HenriqZimer
+    - name: linuxserver.io Dolphin Image
+      url: https://docs.linuxserver.io/images/docker-dolphin/
+    - name: Documentation
+      url: https://github.com/HenriqZimer/dolphin-helm-chart/blob/main/chart/README.md
+  artifacthub.io/signKey: |
+    fingerprint: C2E2E16693F2715BA0B23913BF94E5067859562F
+    url: https://henriqzimer.github.io/dolphin-helm-chart/HenriqZimer-helm-charts-public.asc
+apiVersion: v2
+appVersion: latest
+description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator KasmVNC
+  webtop image
+home: https://docs.linuxserver.io/images/docker-dolphin/
+icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png
+keywords:
+- - dolphin
+- - emulator
+- - gamecube
+- - wii
+- - retrogaming
+- - kasmvnc
+- - linuxserver
+maintainers:
+- - email: henrique.zimermann@outlook.com
+  name: HenriqZimer
+  url: https://henriqzimer.com.br
+name: dolphin
+sources:
+- - https://github.com/linuxserver/docker-dolphin
+- - https://github.com/HenriqZimer/dolphin-helm-chart
+type: application
+version: 1.5.3
+
+...
+files:
+  dolphin-1.5.3.tgz: sha256:ece9d50c6dcec03f9f16b0b940ec405949c02c2261459cf4b1f3bea0d452984e
+
+-----BEGIN PGP SIGNATURE-----
+
+wsG5BAEBCgBtBYJqi3jhCRC/lOUGeFlWL0UUAAAAAAAcACBzYWx0QG5vdGF0aW9u
+cy5vcGVucGdwanMub3JnKFoSCeLpywJW95NTYVMlE01j+yvhHvdDnAnckBbj24kW
+IQTC4uFmk/JxW6CyORO/lOUGeFlWLwAAN6oP/3xPikZadIPpK1vQ2ngmoFH1u6cF
+y9pu+2I7phzF/uMa4xz5P6JuMSGF72FHJfLrfg2I06Cnwz+IlWIg1fsXHdspDZUN
+t4S1l6+xSewelGmudVzb2eQo+Ihlp4sPTrblb904BfMYTP/4gYbJxsxxC6U3etNT
+6QgHO4KKCdw8kv2i0CgPEV9YVsSJHM5vIlQ0E45fS3bINnezd+u80mJfJhJeS13+
+TAyzMjq//1G3er0FycbqN152MX/8DCLV6NRx4YI13zj6bmC3J0AYbCbVx7JDrLqL
+oc/GowGq8UMHuAyVIrGb0nkUBtOi4bfELjaE9VuY2F2U0ponjH6bRPO8lfGhbarO
+rMKmI29HU/Sqr0tJJbwDgxwRBSVGlocKUqXkl52LeNBYh6WLl48gBu1tSB8sxTSR
+xlzQGlws6AJmmTJbpNqJmfTHrFEWLyZBz+ZmHasM898Tq3JZhYsNEZAaIxv6lGk3
+llhgWzEA8Jmq/rPIsr2dBOOPYoNkvLSwgoC74y8UYqgJsKefIjqUqR2umZ6IjgzK
+nizsk4JEZbkKS0rn7H9Qxv4yvBXG933mMWczhqsHlS1AbnRsO971He+djzxYfeWR
+SVP+Z7wKjq53ndZDWJXkbMr4xQ/9d4hzdJQAO4Wq2/wMEzG8zkKrSEJOZaTgxvaO
+PAJ7rnpDcXKFnNc1
+-----END PGP SIGNATURE-----
