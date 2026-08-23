@@ -151,8 +151,9 @@ spec:
           livenessProbe:
             tcpSocket:
               port: http
-            initialDelaySeconds: 90
+            initialDelaySeconds: 120
             periodSeconds: 20
+            failureThreshold: 6
       {{- if and .Values.gpu.enabled (eq .Values.gpu.vendor "intel-amd") }}
       {{- with .Values.gpu.supplementalGroups }}
       securityContext:
