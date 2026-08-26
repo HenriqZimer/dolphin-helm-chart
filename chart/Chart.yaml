@@ -2,7 +2,7 @@ apiVersion: v2
 name: dolphin
 description: A Helm chart for Dolphin - the linuxserver.io GameCube/Wii emulator KasmVNC webtop image
 type: application
-version: 1.5.3
+version: 1.5.4
 appVersion: "latest"
 icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/dolphin-logo.png
 keywords:
