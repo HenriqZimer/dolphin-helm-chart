@@ -128,8 +128,6 @@ spec:
               mountPath: /dev/uinput
             - name: uhid
               mountPath: /dev/uhid
-            - name: dev-input
-              mountPath: /dev/input
             {{- end }}
             {{- with .Values.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
@@ -192,10 +190,6 @@ spec:
           hostPath:
             path: /dev/uhid
             type: CharDevice
-        - name: dev-input
-          hostPath:
-            path: /dev/input
-            type: Directory
         {{- end }}
         {{- with .Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}
